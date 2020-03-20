@@ -1,0 +1,17 @@
+{
+  "name": "api",
+  "version": "0.0.0",
+  "description": "API for Chat Web App",
+  "author": "Tristan Matthias <hello@tristanmatthias.com>",
+  "homepage": "",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc -p ./",
+    "dev": "concurrently 'yarn build -w' 'nodemon dist'"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.2"
+  }
+}
