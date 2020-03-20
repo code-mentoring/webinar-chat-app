@@ -34,7 +34,7 @@ for the Client React app (`packages/client`). It uses Express.js for the web api
 Web Sockets to provide real time communication to the client, and Sequelize to
 connect to the database.
 
-### Client project
+### Client project (`packages/client`)
 The Client project is the web app the user will interact with. It uses React
 and WebSockets to talk to the API.
 
