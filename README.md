@@ -47,7 +47,7 @@ and WebSockets to talk to the API.
   - Why is Typescript used?
 - Learn the fundamentals of Express JS
   - How do we run a web server in Node.js?
-  - What are middlewares?
+  - What are middlewares? (Pipe story)
 - Learn the fundamentals of connecting to a database in Node.js
   - What is a Model?
   - How does Sequelize work?
