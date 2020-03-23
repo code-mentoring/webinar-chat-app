@@ -14,6 +14,8 @@ You can signup to the webinar here: https://generalassembly.zoom.us/meeting/regi
 
 > **PLEASE NOTE**: This is **NOT** a General Assembly event, they just very kindly are providing us with their Zoom account during the Corona Virus situation.
 
+## Recordings
+[**WEEK 1 YOUTUBE RECORDING**](https://youtu.be/lmLYgP_tePM)
 
 
 ## Setup
