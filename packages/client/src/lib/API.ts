@@ -7,5 +7,10 @@ class API {
     const res = await axios.get(`${this.prefix}/conversations/${id}`);
     return res.data;
   }
+
+  async getMessages(id: string) {
+    const res = await axios.get(`${this.prefix}/conversations/${id}/messages`);
+    return res.data;
+  }
 }
 export const api = new API();
