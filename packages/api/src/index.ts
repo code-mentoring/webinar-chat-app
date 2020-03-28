@@ -2,8 +2,10 @@ import express from 'express';
 
 import { middlewareLogger } from './middleware/logger';
 import { usersRouter } from './routes/users';
+import { conversationsRouter } from './routes/conversations';
 import { sequelize } from './database';
 import bodyParser from 'body-parser';
+import { messagesRouter } from './routes/messages';
 
 const run = async () => {
   // Created an INSTANCE of an API
@@ -32,8 +34,11 @@ const run = async () => {
   // Use the middleware for ALL requests (Includes get, post, put, any url)
   app.use(bodyParser.json()); // for parsing application/json
   app.use(middlewareLogger);
+
   // Defining a NEW PIPE
   app.use('/users', usersRouter);
+  app.use('/conversations', conversationsRouter);
+  app.use('/messages', messagesRouter);
 
   // Running the web server on port 9999
   app.listen(9999);
