@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 
 import { middlewareLogger } from './middleware/logger';
 import { usersRouter } from './routes/users';
@@ -32,6 +33,7 @@ const run = async () => {
 
 
   // Use the middleware for ALL requests (Includes get, post, put, any url)
+  app.use(cors())
   app.use(bodyParser.json()); // for parsing application/json
   app.use(middlewareLogger);
 

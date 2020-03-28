@@ -1,4 +1,5 @@
 import './styles/base.scss';
+import './lib/API';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
