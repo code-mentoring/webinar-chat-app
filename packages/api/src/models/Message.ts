@@ -22,7 +22,7 @@ export class Message extends Model<Message> {
   @Column
   userId: number; // Who sent the message
 
-  // This is just for Sequelize to create a one to many relationship
+  // This is just for Sequelize to create a one to one relationship
   @BelongsTo(() => User)
   user: User;
 

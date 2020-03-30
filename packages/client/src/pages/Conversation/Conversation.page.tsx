@@ -30,6 +30,8 @@ export const ConversationPage = () => {
     [] // If I pass nothing, it only gets called on component initialization
   );
 
+  if (!conversation) return <span>Loading...</span>
+
   return <main className="conversation">
 
     <header>{conversation
