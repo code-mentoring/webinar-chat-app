@@ -1,12 +1,12 @@
-import express from 'express';
-import cors from 'cors';
+import express from "express";
 
-import { middlewareLogger } from './middleware/logger';
-import { usersRouter } from './routes/users';
-import { conversationsRouter } from './routes/conversations';
-import { sequelize } from './database';
-import bodyParser from 'body-parser';
-import { messagesRouter } from './routes/messages';
+import { middlewareLogger } from "./middleware/logger";
+import { usersRouter } from "./routes/users";
+import { messagesRouter } from "./routes/messages";
+
+import { sequelize } from "./database";
+import bodyParser from "body-parser";
+import { convoRouter } from "./routes/conversations";
 
 const run = async () => {
   // Created an INSTANCE of an API
@@ -22,29 +22,26 @@ const run = async () => {
   try {
     await sequelize.authenticate();
     await sequelize.sync(); // Sync changes to the database
-    console.log('Successfully connected to database');
+    console.log("Successfully connected to database");
   } catch (e) {
-    console.log('Could not connect to database');
+    console.log("Could not connect to database");
     console.log(e);
   }
 
   // const users = await User.findAll();
   // console.log(users);
 
-
   // Use the middleware for ALL requests (Includes get, post, put, any url)
-  app.use(cors())
   app.use(bodyParser.json()); // for parsing application/json
   app.use(middlewareLogger);
-
   // Defining a NEW PIPE
-  app.use('/users', usersRouter);
-  app.use('/conversations', conversationsRouter);
-  app.use('/messages', messagesRouter);
+  app.use("/users", usersRouter);
+  app.use("/conversations", convoRouter);
+  app.use("/messages", messagesRouter);
 
   // Running the web server on port 9999
   app.listen(9999);
-  console.log('API running on http://localhost:9999');
+  console.log("API running on http://localhost:9999");
 };
 
 run();
