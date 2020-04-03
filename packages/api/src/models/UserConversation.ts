@@ -8,9 +8,9 @@ export class UserConversation extends Model<UserConversation> {
 
   @ForeignKey(() => User)
   @Column
-  userId: number;
+  userId: string;
 
   @ForeignKey(() => Conversation)
   @Column
-  conversationId: number;
+  conversationId: string;
 }
