@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { Conversation } from '../models/Conversation';
-import { Message } from '../models/Message';
 
 export const conversationsRouter = Router();
 
