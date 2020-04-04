@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+
+import { Sidebar } from '../../components/Sidebar/Sidebar';
 
 
 export const HomePage = () => {
 
-  return <div>
-    <h1>Chat app</h1>
-  </div>
-}
+  return <main className="home">
+    <Sidebar />
+  </main>;
+};

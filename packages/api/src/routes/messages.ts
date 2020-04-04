@@ -10,6 +10,8 @@ messagesRouter.post('/', async (req, res, next) => {
     await message.save();
     res.json(message);
   } catch (e) {
+    console.log(e);
+
     next(e);
   }
 });

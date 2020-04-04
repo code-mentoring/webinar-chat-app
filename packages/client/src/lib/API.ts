@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { setMe, getMe } from '../config';
 
 class API {
   prefix = 'http://localhost:9999';
@@ -7,6 +8,12 @@ class API {
     return this.request('post', '/auth/login', {
       email, password
     });
+  }
+
+  async me() {
+    const me = await this.request('get', '/me');
+    setMe(me);
+    return me;
   }
 
   async getConversations() {
@@ -30,7 +37,7 @@ class API {
     content: string
   ) {
     return this.request('post', '/messages', {
-      userId: 'd6147162-7377-4236-ab1d-a641f577c3b7',
+      userId: getMe()!.id,
       content,
       conversationId
     });
