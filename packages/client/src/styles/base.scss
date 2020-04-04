@@ -9,6 +9,7 @@
 body {
   background: #ddd;
   --color-main: #0077ff;
+  --color-error: #f07152;
   --color-main-soft: #e6f1fd;
   font-family: Roboto;
 }
@@ -24,4 +25,15 @@ input {
   border-radius: 20px;
   border: 2px solid var(--color-main-soft);
   padding: 10px;
+}
+
+button {
+  background-color: var(--color-main);
+  border: none;
+  border-radius: 20px;
+  height: 40px;
+  color: white;
+  font-size: 18px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }

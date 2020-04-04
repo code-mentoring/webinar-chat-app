@@ -3,6 +3,17 @@ import axios from 'axios';
 class API {
   prefix = 'http://localhost:9999';
 
+  async login(email: string, password: string) {
+    try {
+      const res = await axios.post(`${this.prefix}/auth/login`, {
+        email, password
+      });
+      return res.data;
+    } catch (e) {
+      return null;
+    }
+  }
+
   async getConversations() {
     try {
       const res = await axios.get(`${this.prefix}/conversations`);
