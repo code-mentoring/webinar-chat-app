@@ -1,10 +1,12 @@
 import './conversation.page.scss';
 
-import React, { useEffect, useState } from 'react';
-
-import { api } from '../../lib/API';
-import {Conversation, Message} from '../../lib/types';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router';
+
+import { Sidebar } from '../../components/Sidebar/Sidebar';
+import { api } from '../../lib/API';
+import { Conversation, Message } from '../../lib/types';
+import { CreateConversation } from './CreateConversation';
 import { SendMessage } from './SendMessage';
 
 interface Params {
@@ -17,46 +19,60 @@ export const ConversationPage = () => {
   const [conversation, updateConversation] = useState<Conversation>();
   const [messages, updateMessages] = useState<Message[]>([]);
 
-  const loadInitialData = async() => {
+  // Whenever the `params.conversationID` changes, check to see if we are creating new convo
+  const isNew = useMemo(
+    () => params.conversationID === 'new', // Returns boolean
+    [params.conversationID]
+  );
+
+
+  const loadInitialData = async () => {
+    if (isNew) return; // Stop loading conversation if on New Conversation page
     const conversation = await api.getConversation(params.conversationID);
     if (!conversation) return;
     const messages = await api.getMessages(params.conversationID);
     updateConversation(conversation);
     updateMessages(messages);
-  }
+  };
 
   useEffect(
-    () => { loadInitialData() }, // Watch these values for changes (Not DEEP change)
-    [] // If I pass nothing, it only gets called on component initialization
+    () => { loadInitialData(); }, // Watch these values for changes (Not DEEP change)
+    [params.conversationID] // Update every time the URL param is changed (Sidebar)
   );
 
-  if (!conversation) return <span>Loading...</span>
+  if (!conversation && !isNew) return <span>Loading...</span>;
 
   return <main className="conversation">
+    <Sidebar />
+    {isNew
+      // If creating new convo, display form
+      ? <CreateConversation />
+      // Otherwise display conversation as normal
+      : <>
+        <header>{conversation
+          ? <>Conversation {conversation.name}</>
+          : <h1>Could not find conversation</h1>
+        }
+        </header>
+        <ul className="messages">
+          {messages.map(m =>
+            <li>
+              <span>{m.content}</span>
+            </li>
+          )}
+        </ul>
 
-    <header>{conversation
-      ? <>Conversation {conversation.name}</>
-      : <h1>Could not find conversation</h1>
+        <footer>
+          <SendMessage
+            conversationId={params.conversationID}
+            onNewMessage={message => {
+              updateMessages(m => [...m, message]);
+            }}
+          />
+        </footer>
+      </>
     }
-    </header>
 
-    <ul className="messages">
-      {messages.map(m =>
-        <li>
-          <span>{m.content}</span>
-        </li>
-      )}
-    </ul>
 
-    <footer>
-      <SendMessage
-        conversationId={params.conversationID}
-        onNewMessage={message => {
-          console.log(message);
-
-          updateMessages(m => [...m, message])
-        }}
-      />
-    </footer>
-  </main>
-}
+  </main>;
+};

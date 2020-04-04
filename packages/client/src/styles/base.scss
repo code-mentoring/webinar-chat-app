@@ -12,3 +12,16 @@ body {
   --color-main-soft: #e6f1fd;
   font-family: Roboto;
 }
+
+
+a {
+  text-decoration: none;
+  color: var(--color-main);
+}
+
+
+input {
+  border-radius: 20px;
+  border: 2px solid var(--color-main-soft);
+  padding: 10px;
+}

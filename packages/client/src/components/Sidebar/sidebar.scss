@@ -1,0 +1,40 @@
+aside {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 300px;
+  background: white;
+  border-right: 1px solid #eee;
+
+  div, ul a {
+    display: flex;
+    height: 80px;
+    line-height: 80px;
+    padding: 0 20px;
+    border-bottom: 1px solid #eee;
+    align-items: center;
+  }
+
+  ul a {
+    &:hover {
+      background-color: #f0f0f0;
+    }
+  }
+
+  div {
+    justify-content: flex-end;
+  }
+
+  a.button {
+    border-radius: 50%;
+    background-color: var(--color-main);
+    color: white;
+    border: none;
+    height: 40px;
+    line-height: 40px;
+    width: 40px;
+    font-size: 30px;
+    text-align: center;
+  }
+}

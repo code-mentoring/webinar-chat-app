@@ -8,8 +8,8 @@ import { ConversationPage } from '../pages/Conversation/Conversation.page';
 export const AppRouter = () => {
   return <Router history={history}>
     <Switch>
-      <Route path='/' exact component={HomePage} />
-      <Route path='/c/:conversationID' exact component={ConversationPage} />
+      <Route path="/" exact component={HomePage} />
+      <Route path="/c/:conversationID" exact component={ConversationPage} />
     </Switch>
-  </Router>
-}
+  </Router>;
+};

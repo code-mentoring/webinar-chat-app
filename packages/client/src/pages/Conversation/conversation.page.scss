@@ -13,7 +13,20 @@ main.conversation {
     font-weight: bold;
   }
 
-  ul {
+  header.create {
+    input {
+      min-width: 200px;
+    }
+    button {
+      background: transparent;
+      border: none;
+      color: var(--color-main);
+      margin-left: 10px;
+      font-weight: bold;
+    }
+  }
+
+  ul.messages {
     position: fixed;
     top: 80px;
     left: 300px;
@@ -45,14 +58,7 @@ main.conversation {
     background-color: white;
     align-items: stretch;
 
-    form {
-      width: 100%;
-    }
-
-    input {
-      border-radius: 20px;
-      border: 2px solid var(--color-main-soft);
-      padding: 10px;
+    form, input {
       width: 100%;
     }
   }
