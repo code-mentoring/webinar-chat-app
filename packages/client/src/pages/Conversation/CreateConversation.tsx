@@ -1,6 +1,7 @@
 import React, { FormEvent, useRef, useState } from 'react';
-import { api } from '../../lib/API';
 import { Redirect } from 'react-router';
+
+import { Conversations } from '../../containers/conversations.container';
 import { Conversation } from '../../lib/types';
 
 export const CreateConversation = () => {
@@ -8,9 +9,11 @@ export const CreateConversation = () => {
   const input = useRef<HTMLInputElement>(null);
   const [convo, setConvo] = useState<Conversation>();
 
+  const { createConversation } = Conversations.useContainer();
+
   const submit = async (e: FormEvent) => {
     e.preventDefault();
-    const convo = await api.createConversation(input.current?.value!);
+    const convo = await createConversation(input.current?.value!);
     // Once created we want to redirect to the new conversation
     setConvo(convo);
   };

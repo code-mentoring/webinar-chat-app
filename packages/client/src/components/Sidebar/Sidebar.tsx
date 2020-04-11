@@ -1,20 +1,15 @@
 import './sidebar.scss';
 
-import React, { useEffect, useState } from 'react';
-
-import { api } from '../../lib/API';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Conversation } from '../../lib/types';
+
+import { Conversations } from '../../containers/conversations.container';
 
 export const Sidebar = () => {
-  const [convos, setConvos] = useState<Conversation[]>([]);
-
-  const getConversations = async () => {
-    setConvos(await api.getConversations());
-  };
+  const { conversations, loadConversations } = Conversations.useContainer();
 
   useEffect(() => {
-    getConversations();
+    loadConversations();
   }, []);
 
   return <aside>
@@ -22,7 +17,7 @@ export const Sidebar = () => {
       <Link className="button" to="/c/new">+</Link>
     </div>
     <ul>
-      {convos.map(c => <li>
+      {conversations.map(c => <li>
         <Link to={`/c/${c.id}`}>
           {c.name}
         </Link>
