@@ -1,6 +1,5 @@
 import { Router } from 'express';
 import { User } from '../models/User';
-import bcrypt from 'bcryptjs';
 
 export const usersRouter = Router();
 
@@ -19,27 +18,6 @@ usersRouter.get('/:userID', async (req, res) => {
   const { userID } = req.params;
   const user = await User.findByPk(userID);
   res.json(user);
-});
-
-// Create a user
-usersRouter.post('/', async (req, res, next) => {
-  try {
-    const { password: plain, ...userData } = req.body;
-
-    // Salt and hash the passwords in the database so they're not stored in plain text
-    // 10 is the number of times to encrypt
-    const salt = bcrypt.genSaltSync(10);
-    const password = bcrypt.hashSync(plain, salt);
-
-    const user = new User({
-      ...userData, // NOTE: THIS IS DANGEROUS
-      password
-    });
-    await user.save();
-    res.json(user);
-  } catch (e) {
-    next(e);
-  }
 });
 
 // Update a user

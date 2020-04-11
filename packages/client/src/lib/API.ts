@@ -10,6 +10,17 @@ class API {
     });
   }
 
+  async signup(
+    firstName: string,
+    lastName: string,
+    email: string,
+    password: string
+  ) {
+    return this.request('post', '/auth/signup', {
+      firstName, lastName, email, password
+    });
+  }
+
   async me() {
     const me = await this.request('get', '/me');
     setMe(me);
