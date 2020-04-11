@@ -16,6 +16,8 @@ You can signup to the webinar here: https://generalassembly.zoom.us/meeting/regi
 
 ## Recordings
 [**WEEK 1 YOUTUBE RECORDING**](https://youtu.be/lmLYgP_tePM)
+[**WEEK 2 YOUTUBE RECORDING**](https://www.youtube.com/watch?v=liOfcqSbzcQ)
+[**WEEK 3 YOUTUBE RECORDING**](https://youtu.be/gPg5wZwGSSE)
 
 
 ## Setup
