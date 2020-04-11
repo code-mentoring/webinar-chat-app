@@ -3,7 +3,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import webpack from 'webpack';
 import PluginTerser from 'terser-webpack-plugin';
-import PluginReplace from 'webpack-plugin-replace';
+const PluginReplace = require('webpack-plugin-replace');
 
 const DEFAULT_ENV = {
   NODE_ENV: 'development'
