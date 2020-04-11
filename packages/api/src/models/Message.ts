@@ -27,6 +27,6 @@ export class Message extends Model<Message> {
   user: User;
 
   @ForeignKey(() => Conversation)
-  @Column
+  @Column(DataType.UUID)
   conversationId: string;
 }
