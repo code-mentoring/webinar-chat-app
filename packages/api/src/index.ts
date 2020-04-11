@@ -31,7 +31,7 @@ const run = async () => {
   // Returns a promise
   try {
     await sequelize.authenticate();
-    await sequelize.sync(); // Sync changes to the database
+    await sequelize.sync({ force: true }); // Sync changes to the database
     console.log('Successfully connected to database');
   } catch (e) {
     console.log('Could not connect to database');
