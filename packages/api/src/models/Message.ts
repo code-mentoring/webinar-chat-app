@@ -19,7 +19,7 @@ export class Message extends Model<Message> {
   // This is the column of the conversation ID itself
   @AllowNull(false)
   @ForeignKey(() => User)
-  @Column
+  @Column(DataType.UUID)
   userId: string; // Who sent the message
 
   // This is just for Sequelize to create a one to one relationship
