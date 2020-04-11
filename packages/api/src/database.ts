@@ -1,20 +1,19 @@
 import { Sequelize } from 'sequelize-typescript';
 
-const dbOptions = process.env.DATABASE_URL || {
-  database: 'chat',
-  dialect: 'sqlite', // Change to mysql, postgres, mariadb, etc
-  username: 'root',
-  password: '',
-  storage: 'chat.db',
+const dbOptions = {
   models: [__dirname + '/models'],
   logging: false
 };
 
-
-// production
-// development
-// ci / testing
-
 // Communicate to our database
 // @ts-ignore
-export const sequelize = new Sequelize(dbOptions);
+export const sequelize = process.env.DATABASE_URL
+  ? new Sequelize(process.env.DATABASE_URL, dbOptions)
+  : new Sequelize({
+    ...dbOptions,
+    database: 'chat',
+    dialect: 'sqlite', // Change to mysql, postgres, mariadb, etc
+    username: 'root',
+    password: '',
+    storage: 'chat.db'
+  });
