@@ -3,6 +3,7 @@ import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import path from 'path';
 import webpack from 'webpack';
 import PluginTerser from 'terser-webpack-plugin';
+import PluginReplace from 'webpack-plugin-replace';
 
 const DEFAULT_ENV = {
   NODE_ENV: 'development'
@@ -97,7 +98,14 @@ export default (_env: any, options: { mode: string }) => {
         title: 'Web Chat App',
         template: './src/index.html'
       }),
-      new webpack.DefinePlugin(ENV)
+      new webpack.DefinePlugin(ENV),
+      new PluginReplace({
+        values: {
+          '%%API_URL%%': process.env.NODE_ENV === 'production'
+            ? 'https://cm-chatapp.herokuapp.com'
+            : 'http://localhost:9999'
+        }
+      })
     ],
 
     devServer: {

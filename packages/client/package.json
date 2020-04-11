@@ -43,6 +43,7 @@
     "terser-webpack-plugin": "^2.3.5",
     "ts-loader": "^6.2.1",
     "unstated-next": "^1.1.0",
-    "webpack-dev-server": "^3.10.3"
+    "webpack-dev-server": "^3.10.3",
+    "webpack-plugin-replace": "^1.2.0"
   }
 }
