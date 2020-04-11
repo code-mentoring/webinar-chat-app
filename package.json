@@ -11,7 +11,8 @@
   "scripts": {
     "postinstall": "cd packages/api; yarn build",
     "bootstrap": "yarn; lerna bootstrap; lerna link;",
-    "start-api": "cd packages/api; yarn start"
+    "start-api": "cd packages/api; yarn start",
+    "build-client": "cd packages/client; yarn build"
   },
   "dependencies": {
     "lerna": "^3.20.2",
