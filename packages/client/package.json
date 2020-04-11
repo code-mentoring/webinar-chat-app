@@ -7,7 +7,7 @@
   "license": "MIT",
   "main": "dist/index.js",
   "scripts": {
-    "build": "webpack -p",
+    "build": "webpack -p; cp _redirects dist/_redirects",
     "dev": "webpack-dev-server"
   },
   "dependencies": {
