@@ -9,7 +9,9 @@
     "packages/*"
   ],
   "scripts": {
-    "bootstrap": "yarn; lerna bootstrap; lerna link;"
+    "postinstall": "cd packages/api; yarn build",
+    "bootstrap": "yarn; lerna bootstrap; lerna link;",
+    "start-api": "cd packages/api; yarn start"
   },
   "dependencies": {
     "lerna": "^3.20.2",
