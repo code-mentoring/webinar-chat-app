@@ -5,7 +5,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { AppRouter } from './Router/Router';
 import { Conversations } from './containers/conversations.container';
-import './lib/sockets';
 
 (async () =>
   ReactDOM.render(
