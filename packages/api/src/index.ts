@@ -61,8 +61,11 @@ const run = async () => {
 
   // Running the web server on port 9999
   // app.listen(9999);
-  http.listen(9999, () => {
-    console.log('API running on http://localhost:9999');
+
+  const port = process.env.PORT || 9999;
+
+  http.listen(port, () => {
+    console.log(`API running on http://localhost:${port}`);
   });
 };
 
