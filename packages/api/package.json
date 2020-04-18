@@ -9,11 +9,13 @@
   "scripts": {
     "build": "tsc -p ./",
     "dev": "concurrently 'yarn build -w' 'yarn start'",
-    "start": "nodemon dist"
+    "start": "nodemon dist",
+    "seed": "node dist/seed.js"
   },
   "devDependencies": {
     "@types/bcrypt": "^3.0.0",
     "@types/bcryptjs": "^2.4.2",
+    "@types/faker": "^4.1.11",
     "@types/jsonwebtoken": "^8.3.8",
     "@types/socket.io": "^2.1.4",
     "concurrently": "^5.1.0"
@@ -23,9 +25,11 @@
     "@types/cors": "^2.8.6",
     "@types/node": "^13.9.2",
     "@types/validator": "^12.0.1",
+    "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "express": "^4.17.1",
+    "faker": "^4.1.0",
     "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.2",
     "pg": "^8.0.2",
