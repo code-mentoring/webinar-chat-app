@@ -8,6 +8,7 @@ import { api } from '../../lib/API';
 import { Conversation, Message } from '../../lib/types';
 import { CreateConversation } from './CreateConversation';
 import { SendMessage } from './SendMessage';
+import { Modal } from '../../components/Modal/Modal';
 
 interface Params {
   conversationID: string;
@@ -43,6 +44,7 @@ export const ConversationPage = () => {
   if (!conversation && !isNew) return <span>Loading...</span>;
 
   return <main className="conversation">
+    <Modal>Modal content</Modal>
     <Sidebar />
     {isNew
       // If creating new convo, display form

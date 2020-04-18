@@ -12,7 +12,7 @@ export const Sidebar = () => {
     loadConversations();
   }, []);
 
-  return <aside>
+  return <aside className="sidebar">
     <div>
       <Link className="button" to="/c/new">+</Link>
     </div>
