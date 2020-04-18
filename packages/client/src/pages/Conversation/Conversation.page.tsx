@@ -4,12 +4,14 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router';
 
 import { Sidebar } from '../../components/Sidebar/Sidebar';
+import { Messages } from '../../containers/messages.container';
 import { api } from '../../lib/API';
-import { Conversation, Message } from '../../lib/types';
+import { joinRoom } from '../../lib/sockets';
+import { Conversation } from '../../lib/types';
 import { AddUserToConvoModal } from '../../modals/AddUserToConvo/AddUserToConvo.modal';
 import { CreateConversation } from './CreateConversation';
 import { SendMessage } from './SendMessage';
-import { joinRoom } from '../../lib/sockets';
+
 
 interface Params {
   conversationID: string;
@@ -19,8 +21,8 @@ export const ConversationPage = () => {
   const params = useParams<Params>();
 
   const [conversation, updateConversation] = useState<Conversation>();
-  const [messages, updateMessages] = useState<Message[]>([]);
   const [addingUser, setAddingUser] = useState(false);
+  const { messages, loadMessagesInConvo } = Messages.useContainer();
 
   // Whenever the `params.conversationID` changes, check to see if we are creating new convo
   const isNew = useMemo(
@@ -33,9 +35,8 @@ export const ConversationPage = () => {
     if (isNew) return; // Stop loading conversation if on New Conversation page
     const conversation = await api.getConversation(params.conversationID);
     if (!conversation) return;
-    const messages = await api.getMessages(params.conversationID);
+    loadMessagesInConvo(params.conversationID);
     updateConversation(conversation);
-    updateMessages(messages);
   };
 
   useEffect(
@@ -44,6 +45,11 @@ export const ConversationPage = () => {
       joinRoom(params.conversationID);
     },
     [params.conversationID]
+  );
+
+  const convoMessages = useMemo(
+    () => messages[params.conversationID] || [],
+    [messages, params.conversationID]
   );
 
   if (!conversation && !isNew) return <span>Loading...</span>;
@@ -70,7 +76,7 @@ export const ConversationPage = () => {
         }
         </header>
         <ul className="messages">
-          {messages.map(m =>
+          {convoMessages.map(m =>
             <li>
               <span>{m.content}</span>
             </li>
@@ -78,12 +84,7 @@ export const ConversationPage = () => {
         </ul>
 
         <footer>
-          <SendMessage
-            conversationId={params.conversationID}
-            onNewMessage={message => {
-              updateMessages(m => [...m, message]);
-            }}
-          />
+          <SendMessage conversationId={params.conversationID} />
         </footer>
       </>
     }

@@ -1,22 +1,21 @@
 import React, { FormEvent, useRef } from 'react';
-import { api } from '../../lib/API';
-import { Message } from '../../lib/types';
+
+import { Messages } from '../../containers/messages.container';
+
 
 export interface SendMessageProps {
   conversationId: string;
-  onNewMessage: (message: Message) => void;
 }
 
 export const SendMessage: React.FC<SendMessageProps> = ({
-  conversationId,
-  onNewMessage
+  conversationId
 }) => {
   const input = useRef<HTMLInputElement>(null);
+  const { createMessage } = Messages.useContainer();
 
   const submit = async(e: FormEvent) => {
     e.preventDefault();
-    const message = await api.createMessage(conversationId, input.current?.value!);
-    onNewMessage(message);
+    await createMessage(conversationId, input.current?.value!);
     input.current!.value = '';
   };
 

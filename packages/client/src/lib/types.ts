@@ -10,6 +10,7 @@ export interface Message {
   /** This is the message content */
   content: string;
   id: string;
+  conversationId: string;
 }
 
 

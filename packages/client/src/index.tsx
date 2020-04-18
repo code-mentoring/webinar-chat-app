@@ -1,15 +1,20 @@
-import './styles/base.scss';
 import './lib/API';
+import './lib/sockets';
+import './styles/base.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AppRouter } from './Router/Router';
+
 import { Conversations } from './containers/conversations.container';
-import './lib/sockets'
+import { AppRouter } from './Router/Router';
+import { Messages } from './containers/messages.container';
+
 (async () =>
   ReactDOM.render(
     <Conversations.Provider>
-      <AppRouter />
+      <Messages.Provider>
+        <AppRouter />
+      </Messages.Provider>
     </Conversations.Provider>,
     document.getElementById('app')
   )
