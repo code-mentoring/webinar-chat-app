@@ -4,13 +4,14 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 
 const modalRoot = document.getElementById('modal')!;
-export class Modal extends React.Component {
+export class Modal extends React.Component<{className?: string}> {
   el: HTMLElement;
 
   constructor(props: any) {
     super(props);
     this.el = document.createElement('aside');
     this.el.classList.add('modal');
+    if (this.props.className) this.el.classList.add(this.props.className);
   }
 
   componentDidMount() {

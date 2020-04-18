@@ -1,0 +1,26 @@
+.add-user-to-convo.modal {
+  input {
+    position: relative;
+    width: 100%;
+    margin-top: 2rem;
+    background: white;
+    z-index: 2;
+  }
+  ul {
+    background: var(--color-main-soft);
+    height: 400px;
+    overflow-y: auto;
+    margin-top: -1.5rem;
+    padding: 2rem 1rem;
+    li {
+      height: 2rem;
+      line-height: 2rem;
+      cursor: pointer;
+      &:hover {
+        color: var(--color-main);
+      }
+    }
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+  }
+}
