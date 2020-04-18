@@ -54,6 +54,10 @@ class API {
     });
   }
 
+  async searchUsers(query: string) {
+    return this.request('get', `/users/search?q=${query}`);
+  }
+
 
   private async request(
     type: 'get' | 'post',
