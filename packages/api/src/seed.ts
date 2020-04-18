@@ -6,14 +6,14 @@ const emails = [];
 
 (async() => {
   for (let i = 0; i < users; i += 1) {
-    const email = faker.internet.email();
-    emails.push(email);
-    await axios.post('http://localhost:9999/auth/signup', {
+    const user = {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
-      email,
+      email: faker.internet.email(),
       password: 'secret'
-    });
+    };
+    emails.push(user);
+    await axios.post('http://localhost:9999/auth/signup', user);
   }
 
   console.log(emails);

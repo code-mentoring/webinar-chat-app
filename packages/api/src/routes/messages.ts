@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { Message } from '../models/Message';
 import { checkUserConvo } from '../lib/checkUserConvo';
+import { messageRoom } from '../lib/sockets';
 
 export const messagesRouter = Router();
 
@@ -13,6 +14,9 @@ messagesRouter.post('/', async (req, res, next) => {
     const message = new Message({ content, userId, conversationId });
     await message.save();
     res.json(message);
+
+    messageRoom(req.body.conversationId, message);
+
   } catch (e) {
     next(e);
   }

@@ -9,6 +9,7 @@ import { Conversation, Message } from '../../lib/types';
 import { AddUserToConvoModal } from '../../modals/AddUserToConvo/AddUserToConvo.modal';
 import { CreateConversation } from './CreateConversation';
 import { SendMessage } from './SendMessage';
+import { joinRoom } from '../../lib/sockets';
 
 interface Params {
   conversationID: string;
@@ -38,8 +39,11 @@ export const ConversationPage = () => {
   };
 
   useEffect(
-    () => { loadInitialData(); }, // Watch these values for changes (Not DEEP change)
-    [params.conversationID] // Update every time the URL param is changed (Sidebar)
+    () => {
+      loadInitialData();
+      joinRoom(params.conversationID);
+    },
+    [params.conversationID]
   );
 
   if (!conversation && !isNew) return <span>Loading...</span>;
