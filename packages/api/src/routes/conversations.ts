@@ -72,3 +72,18 @@ conversationsRouter.get('/:conversationID/messages', middlewareConvo, async (req
   // Return the messages
   res.json(messages);
 });
+
+conversationsRouter.post('/:conversationID/add-user', middlewareConvo, async (req, res, next) => {
+  // Get the conversation
+  const { conversationID } = req.params;
+  const { userId } = req.body;
+
+  const conversation = await Conversation.findByPk(conversationID);
+  if (!conversation) return next(new Error('No conversation with that id'));
+
+  await conversation.$add('user', userId);
+  // Return the messages
+  res.json({
+    data: true
+  });
+});
