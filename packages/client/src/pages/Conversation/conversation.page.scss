@@ -26,6 +26,15 @@ main.conversation {
     }
   }
 
+  header {
+    span {
+      display: inline-block;
+      margin-left: 1rem;
+      color: grey;
+      cursor: pointer;
+    }
+  }
+
   ul.messages {
     position: fixed;
     top: 80px;

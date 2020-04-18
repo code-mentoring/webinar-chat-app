@@ -2,9 +2,17 @@ import './modal.scss';
 
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { IconClose } from '../Icon/icons/close';
 
 const modalRoot = document.getElementById('modal')!;
-export class Modal extends React.Component<{className?: string}> {
+
+export interface ModalProps {
+  title: string;
+  onClose: () => void;
+  className?: string;
+}
+
+export class Modal extends React.Component<ModalProps> {
   el: HTMLElement;
 
   constructor(props: any) {
@@ -34,7 +42,15 @@ export class Modal extends React.Component<{className?: string}> {
 
   render() {
     return ReactDOM.createPortal(
-      this.props.children,
+      <>
+        <header>
+          <h2>{this.props.title}</h2>
+          <div onClick={this.props.onClose}>
+            <IconClose />
+          </div>
+        </header>
+        <div className="content">{this.props.children}</div>
+      </>,
       this.el
     );
   }

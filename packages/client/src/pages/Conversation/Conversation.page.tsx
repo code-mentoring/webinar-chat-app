@@ -19,6 +19,7 @@ export const ConversationPage = () => {
 
   const [conversation, updateConversation] = useState<Conversation>();
   const [messages, updateMessages] = useState<Message[]>([]);
+  const [addingUser, setAddingUser] = useState(false);
 
   // Whenever the `params.conversationID` changes, check to see if we are creating new convo
   const isNew = useMemo(
@@ -44,7 +45,12 @@ export const ConversationPage = () => {
   if (!conversation && !isNew) return <span>Loading...</span>;
 
   return <main className="conversation">
-    <AddUserToConvoModal />
+
+    {addingUser && <AddUserToConvoModal
+      convoID={params.conversationID}
+      onClose={() => setAddingUser(false)}
+    />}
+
     <Sidebar />
     {isNew
       // If creating new convo, display form
@@ -52,7 +58,10 @@ export const ConversationPage = () => {
       // Otherwise display conversation as normal
       : <>
         <header>{conversation
-          ? <>Conversation {conversation.name}</>
+          ? <>
+            Conversation {conversation.name}
+            <span onClick={() => setAddingUser(true)}> (Add users)</span>
+          </>
           : <h1>Could not find conversation</h1>
         }
         </header>

@@ -43,6 +43,10 @@ class API {
     return this.request('get', `/conversations/${id}/messages`);
   }
 
+  async addUserToConvo(convoId: string, userId: string) {
+    return this.request('post', `/conversations/${convoId}/add-user`, { userId });
+  }
+
   async createMessage(
     conversationId: string,
     content: string

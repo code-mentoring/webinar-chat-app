@@ -10,19 +10,33 @@ interface User {
   firstName: string;
   lastName: string;
 }
+interface AddUserToConvoModalProps {
+  onClose(): void;
+  convoID: string;
+}
 
-export const AddUserToConvoModal = () => {
+export const AddUserToConvoModal: React.FC<AddUserToConvoModalProps> = ({
+  convoID,
+  onClose
+}) => {
   const [users, setUsers] = useState<User[]>([]);
 
   const onChange: React.InputHTMLAttributes<HTMLInputElement>['onChange'] = async e => {
     setUsers(await api.searchUsers(e.target.value));
   };
 
-  return <Modal className="add-user-to-convo">
-    <h2>Add users to conversation</h2>
-    <input onChange={onChange}type="text" placeholder="Search users..."/>
+  const addUser = async (userId: string) => {
+    await api.addUserToConvo(convoID, userId);
+  };
+
+  return <Modal
+    onClose={onClose}
+    title="Add users to conversation"
+    className="add-user-to-convo"
+  >
+    <input onChange={onChange} type="text" placeholder="Search users..." />
     <ul>
-      {users.map(u => <li>
+      {users.map(u => <li onClick={() => addUser(u.id)}>
         {u.firstName} {u.lastName}
       </li>)}
     </ul>

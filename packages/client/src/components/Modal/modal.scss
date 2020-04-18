@@ -12,6 +12,20 @@
   &.open {
     display: grid;
   }
+
+  header {
+    display: flex;
+
+    svg {
+      color: grey;
+      cursor: pointer;
+      margin-left: 2rem;
+      width: 1rem;
+      path {
+        fill: currentColor;
+      }
+    }
+  }
 }
 
 aside.modal {
